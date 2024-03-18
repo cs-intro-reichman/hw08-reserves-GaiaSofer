@@ -1,4 +1,3 @@
-
 /** Represents a music track. A track has a title (String), an artist (String), 
  *  and a duration (int), in seconds. */
 class Track {
@@ -23,12 +22,10 @@ class Track {
     public String getTitle() {
         return title;
     }
-
     /** Returns this track's artist. */
     public String getArtist() {
         return artist;
     }
-
     /** Returns this track's duration. */
     public int getDuration() {
         return duration;
@@ -43,8 +40,16 @@ class Track {
     // Returns a string that represents the totalSeconds as "minutes:seconds",
     // Where seconds is always two digits. For example, "3:17" or "12:05".
     private String formattedDuration(int totalSeconds) {
-        int minutes = totalSeconds / 60;
+        
         int seconds = totalSeconds % 60;
-        return String.format("%d:%02d", minutes, seconds);
+        //now we change seconds to a string
+            int ones = seconds % 10;
+            char chOnes = (char) (ones + '0'); 
+            char chTens = (char) (((seconds - ones) / 10) + '0');
+            String strSecs = "" + chTens + chOnes;
+        totalSeconds -= seconds;
+        int minutes = totalSeconds / 60;
+
+        return "" + minutes + ":" + strSecs;
     }
 }
